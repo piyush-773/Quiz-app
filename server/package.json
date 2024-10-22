@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "Quiz platform for practice and learn new thing",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Piyush kumar",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "mongoose": "^8.7.2",
