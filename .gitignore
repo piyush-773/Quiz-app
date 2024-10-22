@@ -1,0 +1,58 @@
+# Ignore node_modules for both client and server
+client/node_modules
+server/node_modules
+
+# Ignore environment files
+client/.env
+server/.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore coverage reports
+coverage/
+client/coverage/
+server/coverage/
+
+# Ignore build outputs
+client/build/
+server/build/
+client/dist/
+server/dist/
+
+# Ignore temporary files
+*.tmp
+*.swp
+
+# Ignore DS_Store (for macOS)
+.DS_Store
+
+# Ignore IDE and editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore lock files (optional, depending on your team preference)
+package-lock.json
+yarn.lock
+
+# Ignore specific system files (Windows)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignore environment specific configs
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore sensitive keys or credentials
+*.pem
+*.key
+*.crt
