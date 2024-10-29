@@ -125,65 +125,45 @@ const loginUser = asyncHandler(async (req, res) => {
 
   // Ensure email/username and password are provided
   if (!email && !username) {
-    throw new ApiError(400, "Username or email is required.");
+      throw new ApiError(400, "Username or email is required.");
   }
 
   if (!password) {
-    throw new ApiError(400, "Password is required.");
+      throw new ApiError(400, "Password is required.");
   }
 
   // Email/Username validation
   if (email && !emailRegex.test(email)) {
-    throw new ApiError(400, "Please provide a valid email address.");
+      throw new ApiError(400, "Please provide a valid email address.");
   }
 
   if (username && !usernameRegex.test(username)) {
-    throw new ApiError(
-      400,
-      "Please provide a valid username (alphanumeric, 3-30 characters)."
-    );
+      throw new ApiError(400, "Please provide a valid username (alphanumeric, 3-30 characters).");
   }
 
   // Find user by email or username
-  const user = await User.findOne({
-    $or: [{ email }, { username }],
-  });
+  const user = await User.findOne({ $or: [{ email }, { username }] });
 
   if (!user) {
-    throw new ApiError(404, "User not found.");
+      throw new ApiError(404, "User not found."); // Username or email not found
   }
 
-  //Validating password enter by user
+  // Validating password entered by user
   const isPasswordValid = await user.isPasswordCorrect(password);
 
   if (!isPasswordValid) {
-    throw new ApiError(401, "Invalid password");
+      throw new ApiError(401, "Invalid password."); // Invalid password
   }
 
-  const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
-    user._id
-  );
+  const { accessToken, refreshToken } = await generateAccessAndRefreshToken(user._id);
 
-  const loggedInUser = await User.findById(user._id).select(
-    " -password -refreshToken"
-  );
+  const loggedInUser = await User.findById(user._id).select("-password -refreshToken");
 
   return res
-    .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
-    .json(
-      new ApiResponse(
-        200,
-        {
-          user: loggedInUser,
-          accessToken,
-          refreshToken,
-        },
-        "user logged in success"
-      )
-    );
-  // return res.status(201).json(new ApiResponse(200, user, "User login success"));
+      .status(200)
+      .cookie("accessToken", accessToken, options)
+      .cookie("refreshToken", refreshToken, options)
+      .json(new ApiResponse(200, { user: loggedInUser, accessToken, refreshToken }, "User logged in successfully."));
 });
 
 const logoutUser = asyncHandler(async (req, res) => {
