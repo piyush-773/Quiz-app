@@ -38,20 +38,27 @@ const Header = ({ isLoggedIn, profileImage, onLogout }) => {
             </div>
             <div className="menu flex items-center relative">
                 {isLoggedIn ? (
-                    <div className="relative inline-block">
-                        <img
-                            src={profileImage}
-                            alt="Profile"
-                            className="w-8 h-8 rounded-full cursor-pointer"
-                            onClick={handleDropdownToggle}
-                            // onMouseLeave={handleDropdownToggle}
-                        />
-                        {isDropdownOpen && (
-                            <div className="absolute right-0 bg-white shadow-md mt-1 rounded">
-                                <Link to="/profile" >Profile</Link>
-                                <button onClick={handleLogout}>Logout</button>
-                            </div>
-                        )}
+                    <div className="flex gap-5">
+                        <div className="">
+                            <button className="border border-red-500 p-2 rounded-3xl">Create Quiz</button>
+                        </div>
+                        <div className="relative inline-block">
+                            <img
+                                src={profileImage}
+                                alt="Profile"
+                                className="w-8 h-8 rounded-full cursor-pointer"
+                                onClick={handleDropdownToggle}
+                                // onMouseLeave={handleDropdownToggle}
+                            />
+                            {isDropdownOpen && (
+                                <div className="absolute right-0 bg-white shadow-md mt-1 rounded">
+                                    <Link to="/profile">Profile</Link>
+                                    <button onClick={handleLogout}>
+                                        Logout
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 ) : (
                     <>

@@ -29,8 +29,10 @@ app.use(cookieParser());
 
 // Routes import
 import userRoutes from "./routes/user.routes.js";
+import quizRoutes from "./routes/quiz.routes.js"
 
 // Routes declare
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/quizes", quizRoutes)
 
 export { app };
