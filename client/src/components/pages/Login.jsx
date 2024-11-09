@@ -64,8 +64,9 @@ const Login = ({ setLoggedIn, setProfileImage }) => {
                     data.message.includes("username")
                         ? "Username not found."
                         : data.message.includes("password")
-                        ? "Password is incorrect."
-                        : data.message || "An error occurred. Please try again."
+                          ? "Password is incorrect."
+                          : data.message ||
+                            "An error occurred. Please try again."
                 );
             }
         } catch (error) {
@@ -83,10 +84,20 @@ const Login = ({ setLoggedIn, setProfileImage }) => {
                     <Lottie animationData={LoginGif} className="w-80 md:w-96" />
                 </div>
                 <div className="w-full md:w-1/2 flex flex-col items-center mt-6 md:mt-0">
-                    <h2 className="text-4xl font-bold text-purple-800 mb-8">Welcome Back</h2>
-                    <form onSubmit={handleLogin} className="w-full max-w-sm space-y-6">
+                    <h2 className="text-4xl font-bold text-purple-800 mb-8">
+                        Welcome Back
+                    </h2>
+                    <form
+                        onSubmit={handleLogin}
+                        className="w-full max-w-sm space-y-6"
+                    >
                         <div className="relative">
-                            <label htmlFor="username" className="text-gray-600 font-semibold">Username:</label>
+                            <label
+                                htmlFor="username"
+                                className="text-gray-600 font-semibold"
+                            >
+                                Username:
+                            </label>
                             <input
                                 type="text"
                                 name="username"
@@ -94,13 +105,21 @@ const Login = ({ setLoggedIn, setProfileImage }) => {
                                 placeholder="Enter your username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
-                                onFocus={() => { setError(""); setSuccess(""); }}
+                                onFocus={() => {
+                                    setError("");
+                                    setSuccess("");
+                                }}
                                 required
                                 className="w-full px-5 py-3 mt-2 rounded-lg shadow focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50 border border-gray-300 transition-all duration-200 placeholder-gray-400"
                             />
                         </div>
                         <div className="relative">
-                            <label htmlFor="password" className="text-gray-600 font-semibold">Password:</label>
+                            <label
+                                htmlFor="password"
+                                className="text-gray-600 font-semibold"
+                            >
+                                Password:
+                            </label>
                             <input
                                 type={showPassword ? "text" : "password"}
                                 name="password"
@@ -108,7 +127,10 @@ const Login = ({ setLoggedIn, setProfileImage }) => {
                                 placeholder="Enter your password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                onFocus={() => { setError(""); setSuccess(""); }}
+                                onFocus={() => {
+                                    setError("");
+                                    setSuccess("");
+                                }}
                                 required
                                 className="w-full px-5 py-3 mt-2 rounded-lg shadow focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50 border border-gray-300 transition-all duration-200 placeholder-gray-400"
                             />

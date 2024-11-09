@@ -40,7 +40,11 @@ const Header = ({ isLoggedIn, profileImage, onLogout }) => {
                 {isLoggedIn ? (
                     <div className="flex gap-5">
                         <div className="">
-                            <button className="border border-red-500 p-2 rounded-3xl">Create Quiz</button>
+                            <Link to="/create-quiz">
+                                <button className="border border-red-500 p-2 rounded-3xl bg-gradient-to-r font-bold text-white cursor-pointer via-pink-500 to-purple-500">
+                                    Create Quiz
+                                </button>
+                            </Link>
                         </div>
                         <div className="relative inline-block">
                             <img

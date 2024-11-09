@@ -4,6 +4,7 @@ import {
     Routes,
     Navigate,
 } from "react-router-dom";
+import dotenv from "dotenv";
 import Header from "./components/pages/Header";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
@@ -11,8 +12,13 @@ import Contact from "./components/pages/Contact";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import Profile from "./components/pages/UserDashboard";
+import Quiz from "./components/pages/Quiz";
+import AddQuestion from "./components/pages/AddQuestion";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+dotenv.config({
+    path: "./.env",
+});
 
 function App() {
     const [isLoggedIn, setLoggedIn] = useState(false);
@@ -27,7 +33,6 @@ function App() {
 
     useEffect(() => {
         const token = Cookies.get("accessToken");
-        // const refreshToken = Cookies.get("refreshToken");
         if (token) {
             setLoggedIn(true);
             const fetchedUserData = async () => {
@@ -88,6 +93,13 @@ function App() {
                         )
                     }
                 />
+                <Route
+                    path="/create-quiz"
+                    element={
+                        isLoggedIn ? <Quiz /> : <Navigate to="/login" />
+                    }
+                />
+                <Route path="/add-questions/:quizId" element={<AddQuestion />} />
                 <Route
                     path="/login"
                     element={
